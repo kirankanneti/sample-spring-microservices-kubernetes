@@ -25,7 +25,7 @@ jobs:
     with:
       services: '["department-service","employee-service","organization-service","gateway-service"]'
       java-version: '25'
-      deploy-to-aks: ${{ github.event.inputs.deploy-to-aks }}
+      deploy-to-aks: ${{ github.event.inputs.deploy-to-aks == 'true' }}
     secrets:
       ACR_LOGIN_SERVER: ${{ secrets.ACR_LOGIN_SERVER }}
       ACR_USERNAME: ${{ secrets.ACR_USERNAME }}
