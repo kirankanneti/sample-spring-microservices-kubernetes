@@ -10,15 +10,22 @@ on:
       - master
       - main
   workflow_dispatch:
+    inputs:
+      deploy-to-aks:
+        description: 'Whether to deploy the built images to AKS after pushing.'
+        required: true
+        default: false
+        type: boolean
 
 jobs:
   build:
     # Reference the reusable template. In another repository replace the
     # path prefix with: <org>/<repo>/.github/workflows/build-template.yml@main
-    uses: kirankanneti/GitHub-Templates/.github/workflows/build-template.yml@main
+    uses: ./.github/workflows/build-template.yml
     with:
       services: '["department-service","employee-service","organization-service","gateway-service"]'
       java-version: '25'
+      deploy-to-aks: ${{ github.event.inputs.deploy-to-aks }}
     secrets:
       ACR_LOGIN_SERVER: ${{ secrets.ACR_LOGIN_SERVER }}
       ACR_USERNAME: ${{ secrets.ACR_USERNAME }}
