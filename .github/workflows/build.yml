@@ -21,7 +21,7 @@ jobs:
   build:
     # Reference the reusable template. In another repository replace the
     # path prefix with: <org>/<repo>/.github/workflows/build-template.yml@main
-    uses: ./.github/workflows/build-template.yml
+    uses: kirankanneti/GitHub-Templates/.github/workflows/build-template.yml@main
     with:
       services: '["department-service","employee-service","organization-service","gateway-service"]'
       java-version: '25'
